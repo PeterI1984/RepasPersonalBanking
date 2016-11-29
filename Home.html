@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<title>Personal Banking</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<div id="first1">
+	<h1>Personal Banking</h1>
+</div>
+	
+<!-- start menu-->
+<div id="first2">
+
+<div id="get">
+
+ <h3>Actual Date and Time:</h3>
+
+</div>
+<div>
+<div id="get2">
+  <p id=Date></p>
+ <p id=time></p>
+</div>
+</div>
+<!--buttons in menu -->
+<div id="buttons">
+<button onclick="showIncome()"class="button" id="buttonInPrint">Show INCOME</button> 
+<button onclick="showExpense()"class="button" id="buttonExPrint">Show EXPENSE</button>
+<button onclick="showTurnover()"class="button" id="buttonToPrint">Turnover</button>
+<!-- <button class="button" id="buttonToRem">Remove Turnover</button>	-->
+</div>
+  
+<div id="actual">
+<h3>Actual Balance:</h3>
+<h4 id="actualBalance"></h4></div>
+</div>
+
+ 
+
+    
+    
+<!--end menu-->
+
+<div id="main-content">
+<br> 
+<h2>Welcome to Personal Banking</h2><br>
+<h5>Welcome to Personal Banking website, place where you can easily become a master of your own money</h5><br>
+
+<div id="form">
+<br>
+<!--<form>  -->                               
+	<div id="entertext"> Enter the income: Enter the income item:</div><br>
+  
+	<input type="number" placeholder="Income value €" id="data1"><input type="text" placeholder="Income item" id="data2">
+  <br>
+	<br>
+	<button onclick="addIncome(),sum()" class="button2" id="buttonIn">ADD</button>
+	<button onclick="removeLastIncome(),sum()"class="button2" id="buttonInRem">REMOVE LAST</button> 
+  <button onclick="removeAllIncome(),sum()"class="button2" id="buttonAllInRem">REMOVE ALL</button>  
+   
+	<br>
+	<br>
+	<br>
+	<div id="entertext"> Enter the expense: Enter the expense item:</div><br>
+	<input type="number" placeholder="Expense value €" id="data3"><input type="text" placeholder="Expense item" id="data4">
+	<br>
+	<br>
+	<button onclick="addExpense(),sum()" class="button2" id="buttonEx">ADD</button>
+	<button onclick="removeLastExpense(),sum()" class="button2"id="buttonExRem">REMOVE LAST</button>
+  <button onclick="removeAllExpense(),sum()"class="button2" id="buttonAllExRem">REMOVE ALL</button>
+<!--</form>     -->
+
+</div>
+  
+ <div >
+ 
+<table id="dynamicTableIn">
+
+<thead>
+    <tr class="dyntabIn">
+      <th>Id</th>
+      <th>Income value [€]</th>
+      <th>Income item</th>
+      <th>Date D/M/Y h:m:s</th>
+      <th>Remove row</th>
+    </tr>
+</thead>
+</table>
+   <br>
+   <br>
+   <br>
+  
+<table id="dynamicTableEx">
+<thead>
+    <tr class="dyntabEx">
+      <th>Id</th>
+      <th>Expense value [€]</th>
+      <th>Expense item</th>
+      <th>Date D/M/Y h:m:s</th>
+      <th>Remove row</th>
+    </tr>
+</thead>
+</table>
+
+</div>
+
+</div>
+  
+<div id="footer">   
+<h2>&copy; Allright Reserved</h2>  
+<div id="nav2">
+	<ul>
+		<li><a href="#"><i class="fa fa-facebook" id="icon"></i></a></li>
+		<li><a href="#"><i class="fa fa-twitter" id="icon2"></i></a></li>
+		<li><a href="#"><i class="fa fa-youtube" id="icon3"></i></a></li>
+		<li><a href="#"><i class="fa fa-google" id="icon4"></i></i></a></li>
+	</ul>                                      
+    
+</div>
+ 
+</div>
+
+ <script>
+ function getDate() {
+	var d = new Date();
+    dFormat = [d.getDate(),
+               d.getMonth()+1,
+               d.getFullYear()].join('/')+' '+
+              [d.getHours(),
+               d.getMinutes(),
+               d.getSeconds()].join(':');
+	  
+	  return dFormat;
+    }
+
+var arrayInVal = new Array();
+var arrayInItm = new Array();
+var arrayExVal = new Array();
+var arrayExItm = new Array();
+var arrayTo = new Array();
+var arrayDateIn = new Array();   //****************
+var arrayDateEx = new Array();   //****************
+
+
+var arrayTo = new Array();
+var inCounter = 0;
+var exCounter = 0;
+
+function addIncome(){
+  $(document).ready(function(){
+      incomeVal=$("#data1").val();
+      incomeItm=$("#data2").val();
+      arrayInVal.push(incomeVal);
+      arrayInItm.push(incomeItm);
+      arrayDateIn.push(getDate());
+                      
+                      if(incomeVal<0)
+                      {
+                      alert("You can't enter negative Value!");
+                      }else{
+                            
+            $("#dynamicTableIn").append("<thead>");                                  
+            $("#dynamicTableIn").append("<tr><th>"+arrayInVal.length+"</th>"
+                                       +"<th>"+incomeVal+"</th>"
+                                       +"<th>"+incomeItm+"</th>"
+                                       +"<th>"+getDate()+"</th>"
+                                       +"<th><button onclick='removeIncome(),sum()' id='but1'>Remove</button></th></tr>");         
+            $("#dynamicTableIn").append("</thead>");
+                   
+      $("#dynamicTableIn").last().css("background-color","lightgreen");
+                                               
+      inCounter += parseFloat(arrayInVal);     
+                            }
+  });  
+}
+
+function removeLastIncome(){ 
+  $(document).ready(function(){         
+         
+           $("#dynamicTableIn tr:last:not(.dyntabIn)").remove();
+            if(inCounter>0){                     
+          inCounter -= parseFloat(arrayInVal);
+                             }  
+});                           
+                
+
+}
+
+function removeAllIncome(){
+  $(document).ready(function(){
+          var r = confirm("Delete all?");
+    if (r == true) {
+    alert("You pressed OK! All data will be deleted.");
+           
+           $("#dynamicTableIn tr:not(.dyntabIn)").remove();
+                                
+          inCounter = 0;
+          
+          } else {
+        alert("You pressed Cancel!");
+        return false;
+        }
+});
+}
+
+function removeIncome(){
+  var r = confirm("Delete row!");
+    if (r == true) {
+       alert("You pressed OK! Row will be deleted.");
+      
+      $("#dynamicTableIn").on("click","#but1",function(){
+      $(this).closest("tr").css("background-color", "yellow");  
+      $(this).closest("tr").remove();
+      
+     });              
+          inCounter -= (parseFloat(arrayInVal) || 0);
+       
+    } else {
+        alert("You pressed Cancel!");
+        return false;
+        }
+}
+
+function showIncome(){
+  $(document).ready(function(){
+      
+       $("#dynamicTableIn").fadeToggle(); 
+       
+      });
+}
+
+function addExpense(){   
+  $(document).ready(function addExpense(){
+    
+      expenseVal=$("#data3").val();
+      expenseItm=$("#data4").val();      
+      arrayExVal.push(expenseVal);
+      arrayExItm.push(expenseItm);
+      arrayDateEx.push(getDate());    
+                          if(expenseVal<0)
+                          {
+                          alert("You can't enter negative Value!")
+                          }else{
+            $("#dynamicTableEx").append("<thead>");                                  
+            $("#dynamicTableEx").append("<tr><th>"+arrayExVal.length+"</th>"
+                                       +"<th>"+expenseVal+"</th>"
+                                       +"<th>"+expenseItm+"</th>"
+                                       +"<th>"+getDate()+"</th>"
+                                       +"<th><button onclick='removeExpense(),sum()' id='but2'>Remove</button></th></tr>");         
+            $("#dynamicTableEx").append("</thead>");
+      
+      $("#dynamicTableEx").last().css("background-color","#FF2020");  
+      exCounter += parseFloat(arrayExVal);
+                              }
+                    
+                           
+                    
+  });  
+}
+
+function removeLastExpense(){
+  $(document).ready(function(){
+                   
+          $("#dynamicTableEx tr:last:not(.dyntabEx)").remove();
+              if(exCounter>0){
+          exCounter -= parseFloat(arrayExVal); 
+                           }
+                  
+});
+
+}
+
+function removeAllExpense(){
+  $(document).ready(function(){
+        var r = confirm("Delete all?");
+    if (r == true) {
+    alert("You pressed OK! All data will be deleted.");
+             
+           $("#dynamicTableEx tr:not(.dyntabEx)").remove();
+                                
+          exCounter = 0;
+          
+           } else {
+        alert("You pressed Cancel!");
+        return false;
+        }
+});
+
+}
+
+function removeExpense(){        
+  var r = confirm("Delete row!");
+    if (r == true) {
+       alert("You pressed OK! Row will be deleted.");
+         
+                    $("#dynamicTableEx").on("click","#but2",function(){
+      
+                    $(this).closest("tr").css("background-color", "yellow");  
+                    $(this).closest("tr").remove();
+       
+     }); 
+                  
+          exCounter -= (parseFloat(arrayExVal) || 0);
+} else {
+        alert("You pressed Cancel!");
+       }
+ 
+}
+
+function showExpense(){
+  $(document).ready(function(){
+       
+       $("#dynamicTableEx").fadeToggle(); 
+      
+      });
+}
+
+function showTurnover(){
+  $(document).ready(function(){
+       
+       $("#dynamicTableIn,#dynamicTableEx").fadeToggle(); 
+      
+      });
+}
+
+
+function sum(){
+  $(document).ready(function(){
+      var getAb = inCounter - exCounter;
+       $("#actualBalance").text(getAb);
+   
+   });
+   }
+   
+function showDateAndHours(){
+   
+  var newDate = new Date();
+  var myDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var myMonth = ["January","February","March"
+                  ,"April","May","June"
+                  ,"July","August","September"
+                  ,"October","November","December"];
+                  
+  var day = myDay[newDate.getDay()];
+  var month = myMonth[newDate.getMonth()];
+  var year = newDate.getFullYear();
+  var numberDay = newDate.getDate();
+   
+  var fullDate = day + " " + numberDay + " " + month + " " + year;
+  $("#Date").html(fullDate);
+   
+   var t=new Date();
+   
+   var hou= t.getHours();
+   var min=t.getMinutes();
+   if(min<=9){
+   min="0"+min;
+   }
+   var sec=t.getSeconds();
+   if(sec<=9){
+   sec="0"+sec;
+   }
+   $("#time").html(hou+": "+min+": <font style='color:#999'>"+sec+"</font>");
+   }
+
+setInterval("showDateAndHours()",1000);       
+
+</script>
+
+</body>
+</html>
