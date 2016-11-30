@@ -130,6 +130,9 @@
 </div>
 
  <script>
+ 
+
+ 
  function getDate() {
 	var d = new Date();
     dFormat = [d.getDate(),
@@ -155,14 +158,20 @@ var arrayTo = new Array();
 var inCounter = 0;
 var exCounter = 0;
 
+
 function addIncome(){
-  $(document).ready(function(){
+   $(document).ready(function(){
+       
       incomeVal=$("#data1").val();
       incomeItm=$("#data2").val();
       arrayInVal.push(incomeVal);
       arrayInItm.push(incomeItm);
       arrayDateIn.push(getDate());
-                      
+            
+                    
+                    if(incomeVal != "" && incomeVal !=0) {
+            
+            
                       if(incomeVal<0)
                       {
                       alert("You can't enter negative Value!");
@@ -176,19 +185,22 @@ function addIncome(){
                                        +"<th><button onclick='removeIncome(),sum()' id='but1'>Remove</button></th></tr>");         
             $("#dynamicTableIn").append("</thead>");
                    
-      $("#dynamicTableIn").last().css("background-color","lightgreen");
-                                               
-      inCounter += parseFloat(arrayInVal);     
+            $("#dynamicTableIn").last().css("background-color","lightgreen");                           
+                        inCounter += parseFloat(incomeVal);
                             }
-  });  
+                            }
+                            
+                            
+                                      
+  });                                      
 }
 
 function removeLastIncome(){ 
   $(document).ready(function(){         
-         
+         var lastEl = parseFloat(arrayInVal.pop() || 0);
            $("#dynamicTableIn tr:last:not(.dyntabIn)").remove();
             if(inCounter>0){                     
-          inCounter -= parseFloat(arrayInVal);
+          inCounter -= lastEl;
                              }  
 });                           
                 
@@ -213,21 +225,22 @@ function removeAllIncome(){
 }
 
 function removeIncome(){
+
   var r = confirm("Delete row!");
-    if (r == true) {
-       alert("You pressed OK! Row will be deleted.");
+    if (r == true) { 
       
-      $("#dynamicTableIn").on("click","#but1",function(){
-      $(this).closest("tr").css("background-color", "yellow");  
+       $("#dynamicTableIn").one("click","#but1",function(){
+      var curElVal= $(this).closest("tr").find("th:eq(1)").text();
+      alert("Value: "+curElVal+" wil be removed");
       $(this).closest("tr").remove();
-      
-     });              
-          inCounter -= (parseFloat(arrayInVal) || 0);
-       
+           
+        inCounter -= curElVal;  
+       });             
+          
     } else {
-        alert("You pressed Cancel!");
         return false;
         }
+        
 }
 
 function showIncome(){
@@ -239,13 +252,16 @@ function showIncome(){
 }
 
 function addExpense(){   
-  $(document).ready(function addExpense(){
+  $(document).ready(function(){
     
       expenseVal=$("#data3").val();
       expenseItm=$("#data4").val();      
       arrayExVal.push(expenseVal);
       arrayExItm.push(expenseItm);
-      arrayDateEx.push(getDate());    
+      arrayDateEx.push(getDate());
+      
+                          if(expenseVal != "" && incomeVal !=0) {
+          
                           if(expenseVal<0)
                           {
                           alert("You can't enter negative Value!")
@@ -258,21 +274,21 @@ function addExpense(){
                                        +"<th><button onclick='removeExpense(),sum()' id='but2'>Remove</button></th></tr>");         
             $("#dynamicTableEx").append("</thead>");
       
-      $("#dynamicTableEx").last().css("background-color","#FF2020");  
-      exCounter += parseFloat(arrayExVal);
+            $("#dynamicTableEx").last().css("background-color","#FF2020");
+            exCounter += parseFloat(expenseVal);
                               }
-                    
-                           
+                                    
+                              }
                     
   });  
 }
 
 function removeLastExpense(){
   $(document).ready(function(){
-                   
+           var lastEl = parseFloat(arrayExVal.pop() || 0);        
           $("#dynamicTableEx tr:last:not(.dyntabEx)").remove();
               if(exCounter>0){
-          exCounter -= parseFloat(arrayExVal); 
+          exCounter -= lastEl; 
                            }
                   
 });
@@ -300,18 +316,18 @@ function removeAllExpense(){
 function removeExpense(){        
   var r = confirm("Delete row!");
     if (r == true) {
-       alert("You pressed OK! Row will be deleted.");
-         
-                    $("#dynamicTableEx").on("click","#but2",function(){
-      
-                    $(this).closest("tr").css("background-color", "yellow");  
-                    $(this).closest("tr").remove();
-       
+          
+              $("#dynamicTableEx").one("click","#but2",function(){
+          var curElVal= $(this).closest("tr").find("th:eq(1)").text();
+              alert("Value: "+curElVal+" wil be removed");  
+              $(this).closest("tr").remove();
+               
+               exCounter -= curElVal;
      }); 
                   
-          exCounter -= (parseFloat(arrayExVal) || 0);
-} else {
-        alert("You pressed Cancel!");
+         
+      } else {
+        return false;
        }
  
 }
