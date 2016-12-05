@@ -1,281 +1,161 @@
-@charset "utf-8";
-/*CSS Document*/
+/* CSS Document */
 
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
+/*reset all the margins and paddings*/
 *{
-	padding: 0px;
-	margin: 0px;	
+margin: 0;
+padding: 0;
 }
 
-#first1{
-	width: 100%;
-	height: 80px;
-	background: #037660;
-	color: white;
-	line-height: 80px;
+body{
+font-family: 'Roboto', sans-serif;
 }
 
-#first1 h1 {
-	text-align:center;
-  float: left;
-	font-size: 2em;
-	margin-left: 500px;
+#header{
+width: 100%;
+height: 80px;
+background: #037660; 
+color: white;
+line-height: 80px;
 }
 
-#first2 {
-	width: 100%;
-	height: 50px;
-	background: #66cc8f;
+#header h1{
+float: center;
+font-size: 2em;
+margin-left: 25px;
 }
 
-#first2 h2 {
-	float: left;
-	font-size: 1.5em;
-	margin-left: 100px;
-	margin-right: 100px;
-	line-height: 50px;
-	color: white;
-	font-weight: lighter;
+.jumbotron{              
+text-align: center;
 }
 
-table, th, td {
-    border-collapse:collapse;
-    border: 2px solid black;
-    text-align: middle;
-    margin: 0 auto;
-    
-}
-
-tr:hover {
-    background-color:silver;
-    color:black;
-}
-
-.button {
-    background-color: #a54848; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-	float: left;
-	transition: all ease-in-out 0.45s;
-	border: 1px solid #722c2c;
+.button{
+width: 15%;
+height: 100%;
+background-color: #a54848; 
+color: white;
+border: none;
+font-size: 125%;
+border-radius: 5px;
 }
 
 .button:hover {
-    background-color: #d4fe74;
+    color: #fff;
+    background: green;
+	font-weight: bold;
 }
 
-
-#first2 h3 {
-	float: left;
-	font-size: 1.25em;
-	margin-left: 10px;
-	margin-right: 0px;
-	line-height: 50px;
-	color: white;
-	font-weight: lighter;
+.inexButton {
+width: 10%;
+height: 5%;
+background-color: #30A0EA; 
+color: white;
+border: none;
+font-size: 125%;
+border-radius: 5px;
 }
 
-#first2 h6 {
+.inexButton:hover {
+    color: #fff;
+    background: orange;
+	font-weight: bold;
+}
+
+/*set the background where buttons are*/
+#btnsBack{
+width: 100%;
+height: 50px;
+background: #66cc8f; 
+}
+
+#content{
+width: 100%;
+height: 800px;
+background: url(images/abstract3.jpg) no-repeat;
+background-size: cover;
+text-align: center;
+color: black;
+line-height: 30px;
+}
+
+#enterValues{
+width: 35%;
+height: 300px;
+background: #037660;
+color: white;
+line-height: 30px;
 float: left;
-	font-size: 0.8em;
-	margin-left: 5px;
-	margin-right: 5px;
-	line-height: 0px;
-	color: white;
-	font-weight: lighter;
-
-}
-
-#get2 {
- float: left;
-	font-size: 1em;
-	margin-left: 10px;
-	margin-right: 10px;
-	line-height: 22px;
-  color: black;
-	font-weight: lighter;
-}
-#time {
- float: left;
-	font-size: 1.4em;
-	margin-left: 45px;
-	margin-right: 10px;
-	line-height: 22px;
-	color: black;
-	font-weight: lighter;
- }
-#first2 h5 {
-float: left;
-	font-size: 1.25em;
-	margin-left: 5px;
-	margin-right: 5px;
-	line-height: 50px;
-	
-
-}
-#actual h4{
-float: left;
-	font-size: 1.25em;
-	margin-left: 5px;
-	margin-right: 5px;
-	line-height: 50px;
-	color: black;
-	font-weight: lighter;
-}
- 
-
-#main-content{
-	width: 100%;
-	height: 800px;
-	background: url(images/abstract3.jpg) no-repeat;
-	background-size: cover;
-	text-align: center;
-	color: Black;
-	line-height: 30px; 
-}   
-
-#form{
-	width: 35%;
-	height: 400px;
-	background: #037660;  
-	color: white;
-	line-height: 30px; 
-	float: left;
 }
 
 form{
-	margin-left: 100px;
+margin-left: 50px;
 }
 
-.button2 {
-    background-color: #66cc8f; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-	float: left;
-	transition: all ease-in-out 0.45s;
-	border: 1px solid white;
-}
-
-.button2:hover {
-    background-color: #d4fe74;
-}
-
-#data1{
-	width: 150px;
-	height: 30px;
-	padding: 6px;
-	border-radius: 5px;
-	border: 1px solid #CCC;
-	float: left;
-}
-#data2{
-	width: 200px;
-	height: 30px;
+#data{
+	width: 50%;
+	height: 40px;
 	padding: 6px;
 	border-radius: 5px;
 	border: 1px solid #CCC;
 	float: left;
 }
 
-#data3{
-	width: 155px;
-	height: 30px;
-	padding: 6px;
-	border-radius: 5px;
-	border: 1px solid #CCC;
-	float: left;
-}
-#data4{
-	width: 200px;
-	height: 30px;
-	padding: 6px;
-	border-radius: 5px;
-	border: 1px solid #CCC;
-	float: left;
+#enterText{
+float: left;
+font-size: 20px;
 }
 
-#entertext{
-	float: left;
-	font-size: 20px;
+.btnAdd{
+width: 70px;
+height: 40px;
+background: green;
+color: white;
+border: none;
+font-size: 16px;
+border-radius: 5px;
 }
 
-#footer{
-	width: 100%;
-	height: 150px;
-	background: #66cc8f;
-	line-height: 150px;
+.btnAdd:hover {
+    color: #fff;
+    background: purple;
+	font-weight: bold;
 }
 
-#footer h2{
-	color: white;
-	float: right;
-	margin-right: 20px;
-	font-weight: 200;
-}
-#nav2 ul{
-	float: left;
-	margin-left: 20px;
-}
-
-#nav2 ul li{
-	display: inline-block;
-	list-style-type: none;	
+.btnRem{
+width: 120px;
+height: 40px;
+background: green;
+color: white;
+border: none;
+font-size: 16px;
+border-radius: 5px;
 }
 
-#nav2 ul li a{
-	text-decoration: none;
-	color: white;
-	padding: 10px;	
+.btnRem:hover {
+    color: #fff;
+    background: purple;
+	font-weight: bold;
+ }
+ 
+.clock{
+width: 200px;
+margin: 0 auto;
+padding: 0px;
+position: absolute; top: 0px; right: 10px;
+color: white;
+font-size: 12px;
 }
 
-#icon{
-	font-size: 35px;
+#Date{
+font-family: 'Roboto', sans-serif;
+
+text-align: center;
 }
 
-#icon2{
-	font-size: 35px;
+.highlight {
+  background-color: #66cc8f;
+  color: white;
 }
 
-#icon3{
-	font-size: 35px;
+.tableall{
+margin: 0 auto;
 }
-
-#icon4{
-	font-size: 35px;
-}
-
-#icon:hover{
-	color: #3b5998;
-	transition: all ease-in-out 0.40s;
-}
-
-#icon2:hover{
-	color: #1da1f2;
-	transition: all ease-in-out 0.40s;
-}
-
-#icon3:hover{
-	color: #e62117;
-	transition: all ease-in-out 0.40s;
-}
-
-#icon4:hover{
-	color: #fbbc05;
-	transition: all ease-in-out 0.40s;
-}
-
